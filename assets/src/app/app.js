@@ -32,9 +32,11 @@ angular.module( 'lobby', [
 
 .controller( 'AppCtrl',['$scope', '$location', 'config', function AppCtrl ( $scope, $location, config ) {
 		$scope.$on('$viewContentLoaded', function(){
+    		console.log("kakka");
    			setTimeout(function() {
           		$scope.$apply(function() {
             	//wrapped this within $apply
+            	console.log("nispe");
             	$location.path("/");
           		});
         	}, 5000);
