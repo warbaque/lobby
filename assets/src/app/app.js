@@ -30,13 +30,14 @@ angular.module( 'lobby', [
 	moment.lang('en');
 })
 
-.controller( 'AppCtrl',['$scope', '$location', 'config', function AppCtrl ( $scope, $location, config ) {
-		$scope.$on('$viewContentLoaded', function(){
-   			setTimeout(function() {
-          		$scope.$apply(function() {
-            	//wrapped this within $apply
-            	$location.path("/");
-          		});
-        	}, 5000);
-  		});
+.controller( 'AppCtrl',['$scope', '$location','$timeout', 'config', function AppCtrl ( $scope, $location, $timeout, config ) {
+        $scope.$on('$viewContentLoaded', function(){
+          // if timer already exists, destroy it so that it resets when user navigates
+          if($scope.timer){
+            $timeout.cancel($scope.timer);
+          }
+          $scope.timer = $timeout(function(){
+                $location.path("/");
+            }, 5000);
+        });
 }]);
