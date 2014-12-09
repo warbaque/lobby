@@ -30,6 +30,13 @@ angular.module( 'lobby', [
 	moment.lang('en');
 })
 
-.controller( 'AppCtrl',['$scope', 'config', function AppCtrl ( $scope, config ) {
-	config.currentUser = window.currentUser;
+.controller( 'AppCtrl',['$scope', '$location', 'config', function AppCtrl ( $scope, $location, config ) {
+		$scope.$on('$viewContentLoaded', function(){
+   			setTimeout(function() {
+          		$scope.$apply(function() {
+            	//wrapped this within $apply
+            	$location.path("/");
+          		});
+        	}, 5000);
+  		});
 }]);
